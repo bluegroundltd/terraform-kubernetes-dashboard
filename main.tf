@@ -153,6 +153,60 @@ resource "kubernetes_cluster_role" "kubernetes_dashboard" {
     resources = ["pods", "nodes"]
     verbs = ["get", "list", "watch"]
   }
+
+  rule {
+    api_groups = [""]
+    resources = ["nodes", "namespaces", "pods", "serviceaccounts", "services", "configmaps", "endpoints", "persistentvolumeclaims", "replicationcontrollers", "replicationcontrollers/scale", "persistentvolumeclaims", "persistentvolumes", "bindings", "events", "limitranges", "namespaces/status", "pods/log", "pods/status", "replicationcontrollers/status", "resourcequotas", "resourcequotas/status"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["apps"]
+    resources = ["daemonsets", "deployments", "deployments/scale", "replicasets", "replicasets/scale", "statefulsets"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["autoscaling"]
+    resources = ["horizontalpodautoscalers"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["batch"]
+    resources = ["cronjobs", "jobs"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["extensions"]
+    resources = ["daemonsets", "deployments", "deployments/scale", "networkpolicies", "replicasets", "replicasets/scale", "replicationcontrollers/scale"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["networking.k8s.io"]
+    resources = ["ingresses", "networkpolicies"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["policy"]
+    resources = ["poddisruptionbudgets"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["storage.k8s.io"]
+    resources = ["storageclasses", "volumeattachments"]
+    verbs = ["get", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["rbac.authorization.k8s.io"]
+    resources = ["clusterrolebindings", "clusterroles", "roles", "rolebindings"]
+    verbs = ["get", "list", "watch"]
+  }
 }
 
 resource "kubernetes_cluster_role_binding" "kubernetes_dashboard" {
