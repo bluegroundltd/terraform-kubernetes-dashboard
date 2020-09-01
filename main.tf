@@ -180,7 +180,7 @@ resource "kubernetes_cluster_role" "kubernetes_dashboard" {
 
   rule {
     api_groups = ["extensions"]
-    resources = ["daemonsets", "deployments", "deployments/scale", "networkpolicies", "replicasets", "replicasets/scale", "replicationcontrollers/scale"]
+    resources = ["daemonsets", "deployments", "ingresses", "deployments/scale", "networkpolicies", "replicasets", "replicasets/scale", "replicationcontrollers/scale"]
     verbs = ["get", "list", "watch"]
   }
 
